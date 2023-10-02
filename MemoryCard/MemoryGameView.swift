@@ -12,9 +12,10 @@ struct MemoryGameView: View {
     var body: some View {
         VStack {
             Cards(viewModel: viewModel, cards: viewModel.cards)
-                .animation(.default, value: viewModel.cards)
             Button("Shuffle") {
-                viewModel.shuffle()
+                withAnimation {
+                    viewModel.shuffle()
+                }
             }
         }
     }
@@ -53,8 +54,11 @@ struct Card: View {
             }
         }
         .aspectRatio(2/3, contentMode: .fit)
+        .rotation3DEffect(.degrees(card.isFaceUp || card.isMatched ? 0 : 180), axis: (x: 0.0, y: 1.0, z: 0.0))
         .onTapGesture {
-            viewModel.pickCard(card)
+            withAnimation {
+                viewModel.pickCard(card)
+            }
         }
     }
 }
