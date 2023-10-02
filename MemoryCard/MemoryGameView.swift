@@ -53,9 +53,13 @@ struct CardView: View {
             if card.isFaceUp || card.isMatched {
                 RoundedRectangle(cornerRadius: 12).fill(.white)
                 RoundedRectangle(cornerRadius: 12).strokeBorder(lineWidth: 2)
-                Text(card.title)
-                    .font(.system(size: 50))
-                    .minimumScaleFactor(0.01)
+                    .overlay {
+                        Text(card.title)
+                            .scaledToFit()
+                            .font(.system(size: 100))
+                            .minimumScaleFactor(0.01)
+                            .padding(15)
+                    }
             } else {
                 RoundedRectangle(cornerRadius: 12).fill(.cyan)
             }
