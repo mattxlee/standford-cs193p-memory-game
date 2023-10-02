@@ -55,6 +55,13 @@ struct MemoryGameModel {
         print(cards)
     }
     
+    mutating func reset() {
+        for index in cards.indices {
+            cards[index].isFaceUp = false
+            cards[index].isMatched = false
+        }
+    }
+    
     struct Card: Hashable, Identifiable, CustomDebugStringConvertible {
         var id: String
         var title: String

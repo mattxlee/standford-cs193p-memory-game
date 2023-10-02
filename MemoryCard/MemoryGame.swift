@@ -21,4 +21,8 @@ class MemoryGame: ObservableObject {
     func shuffle() {
         model.shuffle()
     }
+    
+    func reset() {
+        model.reset()
+    }
 }

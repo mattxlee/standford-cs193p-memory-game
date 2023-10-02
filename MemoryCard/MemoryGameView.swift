@@ -11,34 +11,41 @@ struct MemoryGameView: View {
     @ObservedObject var viewModel: MemoryGame
     var body: some View {
         VStack {
-            Cards(viewModel: viewModel, cards: viewModel.cards)
+            cards
+            buttons
+        }
+        .padding()
+    }
+    
+    private var cards: some View {
+        ScrollView {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 80), spacing: 0)], spacing: 0, content: {
+                ForEach(viewModel.cards) { card in
+                    CardView(viewModel: viewModel, card: card)
+                        .padding(4)
+                }
+            })
+        }
+    }
+    
+    private var buttons: some View {
+        HStack {
             Button("Shuffle") {
                 withAnimation {
                     viewModel.shuffle()
+                }
+            }
+            Spacer()
+            Button("Reset") {
+                withAnimation {
+                    viewModel.reset()
                 }
             }
         }
     }
 }
 
-struct Cards: View {
-    let viewModel: MemoryGame
-    let cards: [MemoryGameModel.Card]
-    var body: some View {
-        ScrollView {
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 80), spacing: 0)], spacing: 0, content: {
-                ForEach(cards) { card in
-                    Card(viewModel: viewModel, card: card)
-                        .padding(4)
-                }
-            })
-        }
-        .padding()
-        Spacer()
-    }
-}
-
-struct Card: View {
+struct CardView: View {
     let viewModel: MemoryGame
     let card: MemoryGameModel.Card
     var body: some View {
