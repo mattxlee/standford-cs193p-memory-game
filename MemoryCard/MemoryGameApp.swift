@@ -2,7 +2,7 @@
 //  MemoryCardApp.swift
 //  MemoryCard
 //
-//  Created by 李馨华 on 2023/10/1.
+//  Created by Matthew on 2023/10/1.
 //
 
 import SwiftUI

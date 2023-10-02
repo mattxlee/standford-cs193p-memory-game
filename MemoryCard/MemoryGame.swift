@@ -2,7 +2,7 @@
 //  MemoryGameViewModel.swift
 //  MemoryCard
 //
-//  Created by 李馨华 on 2023/10/2.
+//  Created by Matthew on 2023/10/2.
 //
 
 import SwiftUI
